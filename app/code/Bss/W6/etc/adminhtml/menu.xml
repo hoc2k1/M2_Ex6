@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <!-- Them menu item Internship -->
+    <menu>
+        <add id="Bss_W6::week6" title="Week 6" module="Bss_W6" sortOrder="20" resource="Bss_W6::week6" />
+        <add id="Bss_W6::internship" title="Internship" module="Bss_W6" sortOrder="1" parent="Bss_W6::week6" action="week6/internship/index" resource="Bss_W6::internship" />
+    </menu>
+    <!-- end -->
+</config>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <!-- tao duong dan -->
+    <router id="admin">
+        <route id="week6" frontName="week6">
+            <module name="Bss_W6" before="Magento_Backend" />
+        </route>
+    </router>
+    <!-- end -->
+</config>
