@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bss\W6\Api\Data\InternshipInterface" type="Bss\W6\Model\Internship" />
+
+    <virtualType name="Bss\W6\Model\ResourceModel\Internship\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">internship</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\W6\Model\ResourceModel\Internship</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="week6_internship_grid_data_source" xsi:type="string">Bss\W6\Model\ResourceModel\Internship\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
