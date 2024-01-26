@@ -28,7 +28,7 @@ class Index extends Internship
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_resultPageFactory->create();
         $resultPage->setActiveMenu('Bss_W6::week6');
-        $resultPage->getConfig()->getTitle()->prepend(__('AddRow'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Internship'));
 
         return $resultPage;
     }

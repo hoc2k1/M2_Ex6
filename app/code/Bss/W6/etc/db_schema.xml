@@ -2,14 +2,17 @@
                  xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <!-- tao bang internship -->
     <table name="internship">
-        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="ID"/>
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="ID" identity="true"/>
         <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
-        <column xsi:type="datetime" name="date_of_birth" nullable="false" comment="Date of birth"/>
+        <column xsi:type="datetime" name="date_of_birth" nullable="true" comment="Date of birth"/>
         <column xsi:type="varchar" name="gender" nullable="true" length="255" comment="Gender"/>
-        <column xsi:type="varchar" name="address" length="255" comment="Address"/>
+        <column xsi:type="varchar" name="address" length="255" nullable="true" comment="Address"/>
         <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Email"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="UNIQUE_EMAIL">
+            <column name="email"/>
         </constraint>
    </table>
    <!-- end -->

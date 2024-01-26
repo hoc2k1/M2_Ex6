@@ -41,6 +41,8 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
 
     /**
      * Set Id.
+     *
+     * @return $this
      */
     public function setId($id)
     {
@@ -50,7 +52,7 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
     /**
      * Get Name.
      *
-     * @return varchar
+     * @return string
      */
     public function getName()
     {
@@ -59,6 +61,8 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
 
     /**
      * Set Name.
+     *
+     * @return $this
      */
     public function setName($name)
     {
@@ -68,7 +72,7 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
     /**
      * Get Date Of Birth.
      *
-     * @return varchar
+     * @return string
      */
     public function getDateOfBirth()
     {
@@ -77,6 +81,8 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
 
     /**
      * Set Date Of Birth.
+     *
+     * @return $this
      */
     public function setDateOfBirth($dateOfBirth)
     {
@@ -86,7 +92,7 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
     /**
      * Get Address.
      *
-     * @return varchar
+     * @return string
      */
     public function getAddress()
     {
@@ -95,6 +101,8 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
 
     /**
      * Set Address.
+     *
+     * @return $this
      */
     public function setAddress($address)
     {
@@ -104,7 +112,7 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
     /**
      * Get Email.
      *
-     * @return varchar
+     * @return string
      */
     public function getEmail()
     {
@@ -113,9 +121,31 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
 
     /**
      * Set Email.
+     *
+     * @return $this
      */
     public function setEmail($email)
     {
         return $this->setData(self::EMAIL, $email);
+    }
+
+    /**
+     * Get Gender.
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->getData(self::GENDER);
+    }
+
+    /**
+     * Set Gender.
+     *
+     * @return $this
+     */
+    public function setGender($gender)
+    {
+        return $this->setData(self::GENDER, $gender);
     }
 }

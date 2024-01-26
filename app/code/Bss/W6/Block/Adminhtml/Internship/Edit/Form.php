@@ -92,7 +92,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'date_format' => $dateFormat,
 //                'time_format' => 'HH:mm:ss',
                 'class' => 'validate-date validate-date-range date-range-custom_theme-from',
-                'class' => 'required-entry',
                 'style' => 'width:200px',
             ]
         );
@@ -104,7 +103,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'label' => __('Gender'),
                 'id' => 'gender',
                 'title' => __('Gender'),
-                'class' => 'required-entry',
                 'style' => 'width:200px',
                 'values' => [
                     ['value' => 'male', 'label' => __('Male')],
@@ -120,7 +118,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'label' => __('Address'),
                 'id' => 'address',
                 'title' => __('Address'),
-                'class' => 'required-entry',
             ]
         );
         $fieldset->addField(
@@ -131,7 +128,10 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'label' => __('Email'),
                 'id' => 'email',
                 'title' => __('Email'),
-                'class' => 'required-entry',
+                'class' => 'required-entry, validate-email',
+                'data' => [
+                    'mage-error' => __('Please enter a valid email address.'),
+                ],
                 'required' => true,
             ]
         );

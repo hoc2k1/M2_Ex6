@@ -131,7 +131,7 @@ class Action extends Column
                 $name = $this->getData('name');
                 if (isset($item['id'])) {
                     $item[$name]['view'] = [
-                        'href' => $this->_urlBuilder->getUrl($this->_viewUrl, ['id' => $item['id']]),
+                        'href' => $this->_urlBuilder->getUrl('week6/internship/edit/form', ['id' => $item['id']]),
                         'target' => '_blank',
                         'label' => __('Edit')
                     ];
