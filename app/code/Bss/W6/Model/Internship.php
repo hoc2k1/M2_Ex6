@@ -50,23 +50,43 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
     }
 
     /**
-     * Get Name.
+     * Get First Name.
      *
      * @return string
      */
-    public function getName()
+    public function getFirstName()
     {
-        return $this->getData(self::NAME);
+        return $this->getData(self::FIRST_NAME);
     }
 
     /**
-     * Set Name.
+     * Set First Name.
      *
      * @return $this
      */
-    public function setName($name)
+    public function setFirstName($firstName)
     {
-        return $this->setData(self::NAME, $name);
+        return $this->setData(self::FIRST_NAME, $firstName);
+    }
+
+    /**
+     * Get Last Name.
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->getData(self::LAST_NAME);
+    }
+
+    /**
+     * Set Last Name.
+     *
+     * @return $this
+     */
+    public function setLastName($lastName)
+    {
+        return $this->setData(self::LAST_NAME, $lastName);
     }
 
     /**

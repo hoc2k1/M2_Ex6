@@ -1,13 +1,4 @@
 <?php
-
-/**
- * Grid Admin Cagegory Map Record Save Controller.
- * @category  Webkul
- * @package   Webkul_Grid
- * @author    Webkul
- * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
- */
 namespace Bss\W6\Controller\Adminhtml\Internship;
 
 class Save extends \Magento\Backend\App\Action
@@ -15,18 +6,26 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var \Bss\W6\Model\InternshipFactory
      */
-    var $internshipFactory;
+    protected $internshipFactory;
+
+    /**
+     * @var \Magento\Framework\Event\ManagerInterface
+     */
+    protected $eventManager;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Bss\W6\Model\InternshipFactory $internshipFactory
+     * @param \Magento\Framework\Event\ManagerInterface $eventManager
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Bss\W6\Model\InternshipFactory $internshipFactory
+        \Bss\W6\Model\InternshipFactory $internshipFactory,
+        \Magento\Framework\Event\ManagerInterface $eventManager
     ) {
         parent::__construct($context);
         $this->internshipFactory = $internshipFactory;
+        $this->eventManager = $eventManager;
     }
 
     /**
@@ -46,10 +45,13 @@ class Save extends \Magento\Backend\App\Action
             if (isset($data['id'])) {
                 $rowData->setEntityId($data['id']);
             }
-            $rowData->save();
-            $this->messageManager->addSuccess(__('Row data has been successfully saved.'));
+
+            // Dispatch a custom event after saving the Internship record
+//            $this->eventManager->dispatch('internship_save', ['internship' => $rowData]);
+            $rowData->afterSave();
+            $this->messageManager->addSuccessMessage(__('Your data has been saved!'));
         } catch (\Exception $e) {
-            $this->messageManager->addError(__($e->getMessage()));
+            $this->messageManager->addErrorMessage(__("There was an error while saving Internship data, please try again!"));
         }
         $this->_redirect('week6/internship/index');
     }

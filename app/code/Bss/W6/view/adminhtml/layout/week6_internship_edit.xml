@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <!-- su dung ui component grid -->
-            <uiComponent name="week6_internship_grid" />
+            <!-- su dung ui component edit form -->
+            <uiComponent name="week6_internship_edit_form"/>
             <!-- end -->
         </referenceContainer>
     </body>

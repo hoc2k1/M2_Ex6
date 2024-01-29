@@ -10,11 +10,27 @@
             <argument name="resourceModel" xsi:type="string">Bss\W6\Model\ResourceModel\Internship</argument>
         </arguments>
     </virtualType>
+
+    <!-- dang ky data soure ui component-->
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="week6_internship_grid_data_source" xsi:type="string">Bss\W6\Model\ResourceModel\Internship\Collection</item>
+                <item name="week6_internship_edit_form_data_source" xsi:type="string">Bss\W6\Model\ResourceModel\Internship\Collection</item>
             </argument>
         </arguments>
     </type>
+    <!-- end -->
+
+    <!-- dang ky plugin hien thong bao -->
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Edit">
+        <plugin name="Bss_W6_edit_account" type="Bss\W6\Plugin\Adminhtml\Customer\Edit" sortOrder="10"/>
+    </type>
+    <!-- end -->
+
+    <!-- dang ky plugin Extension attributes -->
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="Bss_W6_order_repository_plugin" type="Bss\W6\Plugin\Api\OrderRepositoryInterfacePlugin" sortOrder="1"/>
+    </type>
+    <!-- end -->
 </config>

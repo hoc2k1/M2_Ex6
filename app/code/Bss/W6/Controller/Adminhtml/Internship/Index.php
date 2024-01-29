@@ -6,20 +6,35 @@ use Bss\W6\Model\InternshipFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Index extends Internship
 {
+    const ADMIN_RESOURCE = 'Bss_W6::internship';
+
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $scopeConfig;
     public function __construct(
         Context $context,
         Registry $coreRegistry,
         PageFactory $resultPageFactory,
-        InternshipFactory $internshipFactory
+        InternshipFactory $internshipFactory,
+        ScopeConfigInterface $scopeConfig
     )
     {
         parent::__construct($context, $coreRegistry, $resultPageFactory, $internshipFactory);
+        $this->scopeConfig = $scopeConfig;
     }
     public function execute()
     {
+        if (!$this->_authorization->isAllowed(static::ADMIN_RESOURCE) || !$this->scopeConfig->getValue('week6/internship/enable', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
+            $this->_redirect('admin/dashboard/index');
+            $this->messageManager->addErrorMessage(__('You do not have enough permissions to access this page, please contact the administrator!'));
+            return;
+        }
+
         if ($this->getRequest()->getQuery('ajax')) {
             $this->_forward('grid');
             return;

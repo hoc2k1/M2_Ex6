@@ -2,6 +2,6 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <!-- tao module Bss_W6 -->
-    <module name="Bss_W6" setup_version="1.0.0"></module>
+    <module name="Bss_W6" setup_version="1.0.1"></module>
     <!-- end -->
 </config>

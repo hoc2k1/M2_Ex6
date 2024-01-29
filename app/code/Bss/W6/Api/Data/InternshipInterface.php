@@ -9,7 +9,8 @@ interface InternshipInterface
      * Constants for keys of data array. Identical to the name of the getter in snake case.
      */
     const ID = 'id';
-    const NAME = 'name';
+    const FIRST_NAME = 'first_name';
+    const LAST_NAME = 'last_name';
     const DATE_OF_BIRTH = 'date_of_birth';
     const GENDER = 'gender';
     const EMAIL = 'email';
@@ -30,18 +31,32 @@ interface InternshipInterface
     public function setId($id);
 
     /**
-     * Get Name.
+     * Get First Name.
      *
      * @return string
      */
-    public function getName();
+    public function getFirstName();
 
     /**
-     * Set Name.
+     * Set First Name.
      *
      * @return $this
      */
-    public function setName($name);
+    public function setFirstName($firstName);
+
+    /**
+     * Get Last Name.
+     *
+     * @return string
+     */
+    public function getLastName();
+
+    /**
+     * Set Last Name.
+     *
+     * @return $this
+     */
+    public function setLastName($lastName);
 
     /**
      * Get Date Of Birth.
