@@ -1,6 +1,9 @@
 <!-- app/code/Bss/W6/etc/events.xml -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- event check email internship after create customer -->
     <event name="adminhtml_customer_save_after">
-        <observer name="bss_w6_customer_register_success" instance="Bss\W6\Observer\InternshipSaveObserver" />
+        <observer name="bss_w6_customer_register_success" instance="Bss\W6\Observer\InternshipSaveObserver"/>
     </event>
+    <!-- end -->
 </config>

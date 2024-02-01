@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Model\ResourceModel\Internship;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
@@ -7,6 +8,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
      * @var string
      */
     protected $_idFieldName = 'id';
+
     /**
      * Define resource model.
      */

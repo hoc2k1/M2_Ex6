@@ -1,6 +1,6 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <!-- tao bang internship -->
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- create table internship -->
     <table name="internship">
         <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" comment="ID" identity="true"/>
         <column xsi:type="varchar" name="first_name" nullable="false" length="255" comment="First Name"/>
@@ -12,6 +12,12 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>
-   </table>
-   <!-- end -->
+    </table>
+    <!-- end -->
+
+    <!-- add new column to table sales_order -->
+    <table name="sales_order">
+        <column xsi:type="text" name="w6_new_column" nullable="true" comment="Week 6 new column"/>
+    </table>
+    <!-- end -->
 </schema>

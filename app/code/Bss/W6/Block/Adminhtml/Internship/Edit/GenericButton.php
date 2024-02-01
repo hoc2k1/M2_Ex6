@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Block\Adminhtml\Internship\Edit;
 
 use Magento\Backend\Block\Widget\Context;
@@ -29,7 +30,8 @@ class GenericButton
      */
     public function __construct(
         Context $context
-    ) {
+    )
+    {
         $this->urlBuilder = $context->getUrlBuilder();
         $this->getRequest = $context->getRequest();
     }

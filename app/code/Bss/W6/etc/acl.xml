@@ -1,5 +1,7 @@
 <!-- File: app/code/[Vendor]/[Module]/etc/acl.xml -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <!-- Add access permission Internship -->
     <acl>
         <resources>
             <resource id="Bss_W6::internship" title="Internship" sortOrder="10">
@@ -7,4 +9,5 @@
             </resource>
         </resources>
     </acl>
+    <!-- end -->
 </config>

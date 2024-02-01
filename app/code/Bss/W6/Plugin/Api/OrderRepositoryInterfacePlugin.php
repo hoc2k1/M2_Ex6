@@ -15,6 +15,13 @@ class OrderRepositoryInterfacePlugin
         $this->orderExtensionFactory = $orderExtensionFactory;
     }
 
+    /**
+     * Add new column when get order api
+     *
+     * @param OrderRepositoryInterface $subject
+     * @param OrderInterface $order
+     * @return OrderInterface
+     */
     public function afterGet(OrderRepositoryInterface $subject, OrderInterface $order)
     {
         // Retrieve your custom data and set it to the extension attribute

@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Block\Adminhtml\Internship\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;

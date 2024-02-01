@@ -1,7 +1,6 @@
 <?php
-namespace Bss\W6\Api\Data;
 
-use Laminas\Db\Sql\Ddl\Column\Varchar;
+namespace Bss\W6\Api\Data;
 
 interface InternshipInterface
 {

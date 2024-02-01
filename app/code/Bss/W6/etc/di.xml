@@ -1,36 +1,45 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Bss\W6\Api\Data\InternshipInterface" type="Bss\W6\Model\Internship" />
-    <preference for="Bss\W6\Api\Data\InternshipSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bss\W6\Api\Data\InternshipInterface" type="Bss\W6\Model\Internship"/>
+    <preference for="Bss\W6\Api\Data\InternshipSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
     <preference for="Bss\W6\Api\InternshipRepositoryInterface" type="Bss\W6\Model\InternshipRepository"/>
 
-    <virtualType name="Bss\W6\Model\ResourceModel\Internship\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <!-- use resource model with data from table internship -->
+    <virtualType name="Bss\W6\Model\ResourceModel\Internship\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">internship</argument>
             <argument name="resourceModel" xsi:type="string">Bss\W6\Model\ResourceModel\Internship</argument>
         </arguments>
     </virtualType>
+    <!-- end -->
 
-    <!-- dang ky data soure ui component-->
+    <!-- register data source ui component -->
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="week6_internship_grid_data_source" xsi:type="string">Bss\W6\Model\ResourceModel\Internship\Collection</item>
-                <item name="week6_internship_edit_form_data_source" xsi:type="string">Bss\W6\Model\ResourceModel\Internship\Collection</item>
+                <item name="week6_internship_grid_data_source" xsi:type="string">
+                    Bss\W6\Model\ResourceModel\Internship\Collection
+                </item>
+                <item name="week6_internship_edit_form_data_source" xsi:type="string">
+                    Bss\W6\Model\ResourceModel\Internship\Collection
+                </item>
             </argument>
         </arguments>
     </type>
     <!-- end -->
 
-    <!-- dang ky plugin hien thong bao -->
+    <!-- register plugin notification when open customer edit page -->
     <type name="Magento\Customer\Controller\Adminhtml\Index\Edit">
         <plugin name="Bss_W6_edit_account" type="Bss\W6\Plugin\Adminhtml\Customer\Edit" sortOrder="10"/>
     </type>
     <!-- end -->
 
-    <!-- dang ky plugin Extension attributes -->
+    <!-- register plugin Extension attributes -->
     <type name="Magento\Sales\Api\OrderRepositoryInterface">
-        <plugin name="Bss_W6_order_repository_plugin" type="Bss\W6\Plugin\Api\OrderRepositoryInterfacePlugin" sortOrder="1"/>
+        <plugin name="Bss_W6_order_repository_plugin" type="Bss\W6\Plugin\Api\OrderRepositoryInterfacePlugin"
+                sortOrder="1"/>
     </type>
     <!-- end -->
 </config>

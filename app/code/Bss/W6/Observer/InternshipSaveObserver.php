@@ -7,15 +7,11 @@ use Magento\Customer\Model\CustomerFactory;
 use Magento\Customer\Model\ResourceModel\Customer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer;
-use Bss\W6\Model\InternshipFactory;
+use Bss\W6\Model\InternshipRepository;
+use Bss\W6\Model\ResourceModel\Internship;
 
 class InternshipSaveObserver implements ObserverInterface
 {
-    /**
-     * @var \Bss\W6\Model\InternshipFactory
-     */
-    protected $internshipFactory;
-
     /**
      * @var CustomerRepositoryInterface
      */
@@ -30,49 +26,55 @@ class InternshipSaveObserver implements ObserverInterface
     protected $customerResource;
 
     /**
+     * @var InternshipRepository
+     */
+    protected $internshipRepository;
+
+    /**
+     * @var ResourceModel\Internship
+     */
+    protected $resource;
+
+    /**
      * @param CustomerRepositoryInterface $customerRepository
      * @param CustomerFactory $customerFactory
      * @param Customer $customerResource
-     * @param InternshipFactory $internshipFactory
+     * @param InternshipRepository $internshipRepository
+     * @param Internship $resource ;
      */
     public function __construct(
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
-        \Magento\Customer\Model\CustomerFactory $customerFactory,
-        \Magento\Customer\Model\ResourceModel\Customer $customerResource,
-        InternshipFactory $internshipFactory
-
+        \Magento\Customer\Model\CustomerFactory           $customerFactory,
+        \Magento\Customer\Model\ResourceModel\Customer    $customerResource,
+        InternshipRepository                              $internshipRepository,
+        Internship                                        $resource
     )
     {
-        $this->internshipFactory = $internshipFactory;
         $this->customerRepository = $customerRepository;
         $this->customerFactory = $customerFactory;
         $this->customerResource = $customerResource;
+        $this->internshipRepository = $internshipRepository;
+        $this->resource = $resource;
     }
 
     /**
+     * Observer check email and update internship
+     *
      * @param Observer $observer
      */
     public function execute(Observer $observer)
     {
         $customer = $observer->getEvent()->getCustomer();
 
-        // Kiểm tra xem có Internship nào có địa chỉ email giống không
-        $internship = $this->getInternshipByEmail($customer->getEmail());
+        // check email
+        $internship = $this->internshipRepository->getByEmail($customer->getEmail());
 
         if ($internship) {
-            // Cập nhật thông tin của Internship bằng thông tin của khách hàng
+            // update internship
             $internship->setFirstName($customer->getFirstname());
             $internship->setLastName($customer->getLastname());
-            $internship->save();
+            $this->resource->save($internship);
         }
-    }
-
-    protected function getInternshipByEmail($email)
-    {
-        // Truy vấn cơ sở dữ liệu để lấy Internship với địa chỉ email tương ứng
-        $internship = $this->internshipFactory->create()->load($email, 'email');
-
-        return $internship->getId() ? $internship : null;
     }
 }
 

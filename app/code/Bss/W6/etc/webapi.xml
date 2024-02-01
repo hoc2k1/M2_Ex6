@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- api get list internship -->
     <route url="/V1/w6/internship/getList" method="GET">
         <service class="Bss\W6\Api\InternshipRepositoryInterface" method="getList"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>
     </route>
+    <!-- end -->
 
+    <!-- api save internship -->
     <route url="/V1/w6/internship/save" method="POST">
         <service class="Bss\W6\Api\InternshipRepositoryInterface" method="save"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>
     </route>
+    <!-- end -->
 
+    <!-- api delete internship by id -->
     <route url="/V1/w6/internship/delete/:id" method="DELETE">
         <service class="Bss\W6\Api\InternshipRepositoryInterface" method="deleteInternshipById"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>
     </route>
+    <!-- end -->
 
+    <!-- api get internship by id -->
     <route url="/V1/w6/internship/getById/:id" method="GET">
         <service class="Bss\W6\Api\InternshipRepositoryInterface" method="getById"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>
     </route>
+    <!-- end -->
 
 </routes>

@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Controller\Adminhtml\Internship;
 
 use Bss\W6\Model\InternshipRepository;
@@ -21,7 +22,6 @@ class Save extends \Magento\Backend\App\Action
     protected $internshipRepository;
 
 
-
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Bss\W6\Model\InternshipFactory $internshipFactory
@@ -29,11 +29,12 @@ class Save extends \Magento\Backend\App\Action
      * @param InternshipRepository $internshipRepository
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Bss\W6\Model\InternshipFactory $internshipFactory,
+        \Magento\Backend\App\Action\Context       $context,
+        \Bss\W6\Model\InternshipFactory           $internshipFactory,
         \Magento\Framework\Event\ManagerInterface $eventManager,
-        InternshipRepository $internshipRepository
-    ) {
+        InternshipRepository                      $internshipRepository
+    )
+    {
         parent::__construct($context);
         $this->internshipFactory = $internshipFactory;
         $this->eventManager = $eventManager;
@@ -66,9 +67,6 @@ class Save extends \Magento\Backend\App\Action
                 $this->internshipRepository->save($rowData);
             }
 
-
-//            $this->internshipRepository->save($rowData);
-//            $rowData->save();
             $this->messageManager->addSuccessMessage(__('Your data has been saved!'));
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(__("There was an error while saving Internship data, please try again!"));

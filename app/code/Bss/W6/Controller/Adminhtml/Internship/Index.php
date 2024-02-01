@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Controller\Adminhtml\Internship;
 
 use Bss\W6\Controller\Adminhtml\Internship;
@@ -26,10 +27,10 @@ class Index extends Internship
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        Context $context,
-        Registry $coreRegistry,
-        PageFactory $resultPageFactory,
-        InternshipFactory $internshipFactory,
+        Context              $context,
+        Registry             $coreRegistry,
+        PageFactory          $resultPageFactory,
+        InternshipFactory    $internshipFactory,
         ScopeConfigInterface $scopeConfig
     )
     {
@@ -38,6 +39,8 @@ class Index extends Internship
     }
 
     /**
+     * Internship page
+     *
      * @return Page|void
      */
     public function execute()

@@ -2,17 +2,19 @@
 
 namespace Bss\W6\Model;
 
+use Bss\W6\Api\Data\InternshipInterface;
+use Bss\W6\Api\Data\InternshipSearchResultsInterface;
 use Bss\W6\Model\ResourceModel\Internship;
 use Bss\W6\Model\ResourceModel\Internship\CollectionFactory;
 use Bss\W6\Api\InternshipRepositoryInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Bss\W6\Model\InternshipFactory;
-use Magento\Framework\Phrase;
 
 /**
  * Class InternshipRepository
@@ -66,7 +68,6 @@ class InternshipRepository implements InternshipRepositoryInterface
      */
     protected $internshipFactory;
 
-
     /**
      * InternshipRepository constructor.
      *
@@ -95,23 +96,28 @@ class InternshipRepository implements InternshipRepositoryInterface
     }
 
     /**
-     * @inheritDoc
+     * Get Internship by id
+     *
+     * @param $id
+     * @return InternshipInterface|Internship|mixed
+     * @throws NoSuchEntityException
      */
     public function getById($id)
     {
         if (!isset($this->instances[$id])) {
             $mInternship = $this->internshipFactory->create();
-            $mInternshipById = $mInternship->load($id);
+            $this->resource->load($mInternship, $id);
+
             if (!$mInternship->getId()) {
                 throw new NoSuchEntityException(__('Internship with id "%1" does not exist.', $id));
             }
-            $this->instances[$id] = $mInternshipById;
+            $this->instances[$id] = $mInternship;
         }
         return $this->instances[$id];
     }
 
     /**
-     * Save bss internface
+     * Save Internship
      *
      * @param \Bss\W6\Api\Data\InternshipInterface $internship
      * @return \Bss\W6\Api\Data\InternshipInterface|mixed
@@ -139,6 +145,13 @@ class InternshipRepository implements InternshipRepositoryInterface
     }
 
 
+    /**
+     * Edit Internship
+     *
+     * @param $internship
+     * @return mixed
+     * @throws CouldNotSaveException
+     */
     public function edit($internship)
     {
         try {
@@ -161,8 +174,7 @@ class InternshipRepository implements InternshipRepositoryInterface
     }
 
     /**
-     *
-     * Xoa internship bang id
+     * Delete internship by id
      *
      * @param $id
      * @return array
@@ -189,34 +201,35 @@ class InternshipRepository implements InternshipRepositoryInterface
 
     /**
      *
-     * Check trung email
+     * Check exist email
      *
      * @param $email
-     * @return false|Phrase
+     * @return bool
      */
-    public function validateExistEmail($email, $id=null)
+    public function validateExistEmail($email, $id = null)
     {
         if (!$email) {
             return __("email should be specified");
         }
-        $searchCriteria = $this->criteriaBuilder->addFilter("email", $email)
-            ->create();
-        $internshipCollection = $this->getList($searchCriteria);
 
-        if ($internshipCollection->getTotalCount()) {
-            $existInternship = array_values($internshipCollection->getItems())[0];
-            if($existInternship && $id && $existInternship->getId() == $id) {
+        $existInternship = $this->getByEmail($email);
+        if ($existInternship) {
+            // compare email edit
+            if ($id && $existInternship->getId() == $id) {
                 return false;
+            } else {
+                return true;
             }
-            else {
-                return __('Already exist a Internship. Please choose a different email.');
-            }
+        } else {
+            return false;
         }
-        return false;
     }
 
     /**
-     * @inheritDoc
+     * Get list Internship
+     *
+     * @param SearchCriteriaInterface $criteria
+     * @return InternshipSearchResultsInterface|SearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $criteria)
     {
@@ -227,4 +240,26 @@ class InternshipRepository implements InternshipRepositoryInterface
         $searchResults->setTotalCount($collection->getSize());
         return $searchResults;
     }
+
+    /**
+     * Get Internship by Email
+     *
+     * @param $email
+     * @return array|InternshipInterface|Internship|null
+     */
+    public function getByEmail($email)
+    {
+        if (!isset($this->instances[$email])) {
+            $mInternship = $this->internshipFactory->create();
+            $this->resource->load($mInternship, $email, "email");
+            if (!$mInternship->getEmail()) {
+                return null;
+            } else {
+                $this->instances[$email] = $mInternship;
+                return $mInternship;
+            }
+        }
+        return $this->instances;
+    }
+
 }

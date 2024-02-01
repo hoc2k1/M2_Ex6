@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Controller\Adminhtml;
 
 use Magento\Backend\App\Action;
@@ -29,11 +30,12 @@ class Internship extends Action
      * @param InternshipFactory $internshipFactory
      */
     public function __construct(
-        Context $context,
-        Registry $coreRegistry,
-        PageFactory $resultPageFactory,
+        Context           $context,
+        Registry          $coreRegistry,
+        PageFactory       $resultPageFactory,
         InternshipFactory $internshipFactory
-    ) {
+    )
+    {
         parent::__construct($context);
         $this->_coreRegistry = $coreRegistry;
         $this->_resultPageFactory = $resultPageFactory;

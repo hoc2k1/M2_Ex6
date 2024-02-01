@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Model;
 
 use Bss\W6\Model\ResourceModel\Internship\CollectionFactory;
@@ -28,7 +29,8 @@ class InternshipDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvid
         CollectionFactory $collectionFactory,
         array $meta = [],
         array $data = []
-    ) {
+    )
+    {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
         $this->collection = $collectionFactory->create();
     }

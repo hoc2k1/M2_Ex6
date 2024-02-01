@@ -1,16 +1,17 @@
 <?php
+
 namespace Bss\W6\Controller\Adminhtml\Internship;
 
-use Bss\W6\Model\InternshipFactory;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\Session;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Controller\ResultFactory;
+use Bss\W6\Model\InternshipRepository;
+
 /**
  * Class Edit
  *
@@ -19,19 +20,9 @@ use Magento\Framework\Controller\ResultFactory;
 class Edit extends Action
 {
     /**
-     * @var InternshipFactory
-     */
-    protected $internshipFactory;
-
-    /**
      * @var Session
      */
     protected $session;
-
-    /**
-     * @var Registry
-     */
-    protected $registry;
 
     /**
      * @var PageFactory
@@ -43,54 +34,51 @@ class Edit extends Action
      */
     protected $redirect;
 
+
     /**
-     * Edit constructor.
+     * @var InternshipRepository
+     */
+    protected $internshipRepository;
+
+    /**
      * @param Context $context
-     * @param InternshipFactory $internshipFactory
      * @param Session $session
-     * @param Registry $registry
      * @param PageFactory $resultPageFactory
      * @param Redirect $redirect
+     * @param InternshipRepository $internshipRepository
      */
     public function __construct(
-        Context $context,
-        InternshipFactory $internshipFactory,
-        Session $session,
-        Registry $registry,
-        PageFactory $resultPageFactory,
-        Redirect $redirect
-    ) {
+        Context              $context,
+        Session              $session,
+        PageFactory          $resultPageFactory,
+        Redirect             $redirect,
+        InternshipRepository $internshipRepository
+    )
+    {
         parent::__construct($context);
-        $this->internshipFactory = $internshipFactory;
         $this->session = $session;
-        $this->registry = $registry;
         $this->redirect = $redirect;
         $this->resultPageFactory = $resultPageFactory;
+        $this->internshipRepository = $internshipRepository;
     }
 
     /**
-     * Edit a Agency
+     * Edit/Add new internship page
      *
      * @return ResponseInterface|ResultInterface|void
      */
     public function execute()
     {
-        $rowId = (int) $this->getRequest()->getParam('id');
-        $rowData = $this->internshipFactory->create();
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
-        if ($rowId) {
-            $rowData = $rowData->load($rowId);
-            $rowTitle = $rowData->getTitle();
-            if (!$rowData->getId()) {
-                $this->messageManager->addError(__('row data no longer exist.'));
-                $this->_redirect('week6/internship/rowdata');
-                return;
-            }
+        $rowId = (int)$this->getRequest()->getParam('id');
+        $rowData = $this->internshipRepository->getById($rowId);
+        if (!$rowData->getId()) {
+            $this->messageManager->addErrorMessage(__('row data no longer exist.'));
+            $this->_redirect('week6/internship/rowdata');
+            return;
         }
 
-        $this->registry->register('row_data', $rowData);
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $title = $rowId ? __('Edit Internship').$rowTitle : __('Add Internship');
+        $title = $rowId ? __('Edit Internship') : __('Add Internship');
         $resultPage->getConfig()->getTitle()->prepend($title);
         return $resultPage;
     }

@@ -1,15 +1,17 @@
 <?php
+
 namespace Bss\W6\Controller\Adminhtml\Internship;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
 use Bss\W6\Model\ResourceModel\Internship\CollectionFactory;
 use Magento\Framework\Controller\ResultFactory;
+use Bss\W6\Model\InternshipRepository;
 
 class MassDelete extends \Magento\Backend\App\Action
 {
     /**
-     * @var \Bss\W6\Model\InternshipFactory
+     * @var CollectionFactory
      */
     protected $collectionFactory;
 
@@ -19,18 +21,27 @@ class MassDelete extends \Magento\Backend\App\Action
     protected $filter;
 
     /**
+     * @var InternshipRepository
+     */
+    protected $internshipRepository;
+
+    /**
      * @param \Magento\Backend\App\Action\Context $context
-     * @param \Bss\W6\Model\InternshipFactory $collectionFactory
+     * @param CollectionFactory $collectionFactory
      * @param \Magento\Ui\Component\MassAction\Filter $filter
+     * @param InternshipRepository $internshipRepository
      */
     public function __construct(
-        Context $context,
-        CollectionFactory $collectionFactory,
-        Filter $filter
-    ) {
+        Context              $context,
+        CollectionFactory    $collectionFactory,
+        Filter               $filter,
+        InternshipRepository $internshipRepository
+    )
+    {
         parent::__construct($context);
         $this->collectionFactory = $collectionFactory;
         $this->filter = $filter;
+        $this->internshipRepository = $internshipRepository;
     }
 
     /**
@@ -42,8 +53,7 @@ class MassDelete extends \Magento\Backend\App\Action
         $count = 0;
 
         foreach ($collection->getItems() as $item) {
-            $deleteItem = $this->_objectManager->get('Bss\W6\Model\Internship')->load($item->getId());
-            $deleteItem->delete();
+            $this->internshipRepository->deleteInternshipById($item->getId());
             $count++;
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Model;
 
 use Bss\W6\Api\Data\InternshipInterface;
@@ -29,6 +30,7 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
     {
         $this->_init('Bss\W6\Model\ResourceModel\Internship');
     }
+
     /**
      * Get Id.
      *

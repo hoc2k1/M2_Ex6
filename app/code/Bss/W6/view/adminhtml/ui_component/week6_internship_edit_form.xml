@@ -3,7 +3,8 @@
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">week6_internship_edit_form.week6_internship_edit_form_data_source</item>
+            <item name="provider" xsi:type="string">week6_internship_edit_form.week6_internship_edit_form_data_source
+            </item>
             <item name="deps" xsi:type="string">week6_internship_edit_form.week6_internship_edit_form_data_source</item>
         </item>
         <item name="config" xsi:type="array">
@@ -17,6 +18,8 @@
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
+
+    <!-- form -->
     <dataSource name="week6_internship_edit_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Bss\W6\Model\InternshipDataProvider</argument>
@@ -25,7 +28,7 @@
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="update_url" xsi:type="url" path="mui/index/render" />
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
                     <item name="storageConfig" xsi:type="array">
                         <item name="indexField" xsi:type="string">id</item>
                     </item>
@@ -47,7 +50,6 @@
                 <item name="sortOrder" xsi:type="number">20</item>
             </item>
         </argument>
-
         <field name="id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -135,4 +137,5 @@
             </argument>
         </field>
     </fieldset>
+    <!-- end -->
 </form>

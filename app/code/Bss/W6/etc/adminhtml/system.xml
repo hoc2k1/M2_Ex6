@@ -1,20 +1,24 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
-<system>
-    <tab id="bss" translate="label" sortOrder="10">
-        <label>Bss</label>
-    </tab>
-    <section id="week6" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-        <label>Week6</label>
-        <tab>bss</tab>
-        <resource>Bss_W6::config_internship</resource>
-        <group id="internship" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>Internship</label>
-            <field id="enable" translate="label comment" sortOrder="1" type="select" showInDefault="1" >
-                <label>Enable</label>
-                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-            </field>
-        </group>
-    </section>
-</system>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <!-- create config enable/disable menu item Internship -->
+    <system>
+        <tab id="bss" translate="label" sortOrder="10">
+            <label>Bss</label>
+        </tab>
+        <section id="week6" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Week6</label>
+            <tab>bss</tab>
+            <resource>Bss_W6::config_internship</resource>
+            <group id="internship" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Internship</label>
+                <field id="enable" translate="label comment" sortOrder="1" type="select" showInDefault="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+    <!-- add menu item AddRow -->
 </config>

@@ -1,26 +1,20 @@
 <?php
+
 namespace Bss\W6\Controller\Adminhtml\Internship;
 
-use Bss\W6\Model\InternshipFactory;
 use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\Redirect;
-use Magento\Framework\View\Result\PageFactory;
 use Bss\W6\Model\InternshipRepository;
 
 /**
  * Class Delete
  *
- * @package Bss\W6s\Controller\Adminhtml\Index
+ * @package Bss\W6\Controller\Adminhtml\Index
  */
 class Delete extends Action
 {
-    /**
-     * @var InternshipFactory
-     */
-    protected $internshipFactory;
-
     /**
      * @var Redirect
      */
@@ -33,23 +27,23 @@ class Delete extends Action
 
     /**
      * @param Context $context
-     * @param InternshipFactory $internshipFactory
      * @param Redirect $redirect
      * @param InternshipRepository $internshipRepository
      */
     public function __construct(
-        Context $context,
-        InternshipFactory $internshipFactory,
-        Redirect $redirect,
+        Context              $context,
+        Redirect             $redirect,
         InternshipRepository $internshipRepository
-    ) {
+    )
+    {
         parent::__construct($context);
-        $this->internshipFactory = $internshipFactory;
         $this->redirect = $redirect;
         $this->internshipRepository = $internshipRepository;
     }
 
     /**
+     * Delete internship
+     *
      * @return Redirect
      */
     public function execute()

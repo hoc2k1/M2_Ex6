@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Ui\Component\Listing\Grid\Column;
 
 use Magento\Framework\View\Element\UiComponentFactory;

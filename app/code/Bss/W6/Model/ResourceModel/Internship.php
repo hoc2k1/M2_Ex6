@@ -1,4 +1,5 @@
 <?php
+
 namespace Bss\W6\Model\ResourceModel;
 
 class Internship extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
@@ -16,12 +17,12 @@ class Internship extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * Construct.
      *
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
-     * @param \Magento\Framework\Stdlib\DateTime\DateTime       $date
-     * @param string|null                                       $resourcePrefix
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
+     * @param string|null $resourcePrefix
      */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
-        \Magento\Framework\Stdlib\DateTime\DateTime $date,
+        \Magento\Framework\Stdlib\DateTime\DateTime       $date,
                                                           $resourcePrefix = null
     )
     {
