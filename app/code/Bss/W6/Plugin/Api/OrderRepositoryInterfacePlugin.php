@@ -18,7 +18,7 @@ class OrderRepositoryInterfacePlugin
     public function afterGet(OrderRepositoryInterface $subject, OrderInterface $order)
     {
         // Retrieve your custom data and set it to the extension attribute
-        $yourCustomData = $order->getData('w6_new_column');
+        $newRowData = $order->getData('w6_new_column');
 
         $extensionAttributes = $order->getExtensionAttributes();
 
@@ -26,7 +26,7 @@ class OrderRepositoryInterfacePlugin
             $extensionAttributes = $this->orderExtensionFactory->create();
         }
 
-        $extensionAttributes->setData('w6_new_column', $yourCustomData);
+        $extensionAttributes->setW6NewAttribute($newRowData);
         $order->setExtensionAttributes($extensionAttributes);
 
         return $order;

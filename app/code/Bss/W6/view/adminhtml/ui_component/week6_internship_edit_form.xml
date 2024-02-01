@@ -34,8 +34,8 @@
         </argument>
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
-                <item name="submit_url" xsi:type="url" path="*/*/save"/>
-                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                <item name="submit_url" xsi:type="url" path="*/internship/save"/>
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
     </dataSource>
@@ -95,6 +95,18 @@
                     <item name="label" xsi:type="string" translate="true">Date Of Birth</item>
                     <item name="dataScope" xsi:type="string">date_of_birth</item>
                 </item>
+            </argument>
+        </field>
+        <field name="gender">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">week6_internship_edit_form</item>
+                    <item name="label" xsi:type="string" translate="true">Gender</item>
+                    <item name="dataScope" xsi:type="string">gender</item>
+                </item>
+                <item name="options" xsi:type="object">Bss\W6\Model\Source\Gender</item>
             </argument>
         </field>
         <field name="address">

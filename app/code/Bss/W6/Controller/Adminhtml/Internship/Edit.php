@@ -75,19 +75,6 @@ class Edit extends Action
      */
     public function execute()
     {
-//        $id = (int) $this->getRequest()->getParam('id');
-//        $model = $this->internshipFactory->create();
-//        if ($id) {
-//            $model->load($id);
-//            if (!$model->getId()) {
-//                $this->messageManager->addErrorMessage(__('This row no longer exists.'));
-//                $this->redirect->setPath('*/*/');
-//                return;
-//            }
-//        }
-//        $this->registry->register('internship', $model);
-//        return $this->resultPageFactory->create();
-
         $rowId = (int) $this->getRequest()->getParam('id');
         $rowData = $this->internshipFactory->create();
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */

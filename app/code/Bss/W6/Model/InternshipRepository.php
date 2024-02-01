@@ -12,6 +12,7 @@ use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Bss\W6\Model\InternshipFactory;
+use Magento\Framework\Phrase;
 
 /**
  * Class InternshipRepository
@@ -137,8 +138,34 @@ class InternshipRepository implements InternshipRepositoryInterface
         );
     }
 
+
+    public function edit($internship)
+    {
+        try {
+            $validateExistEmail = $this->validateExistEmail($internship->getEmail(), $internship->getId());
+            if (!$validateExistEmail) {
+                $this->resource->save($internship);
+                return $internship;
+            }
+        } catch (\Exception $exception) {
+            throw new CouldNotSaveException(
+                __(
+                    'Could not save internship: %1',
+                    $exception->getMessage()
+                )
+            );
+        }
+        throw new CouldNotSaveException(
+            __($validateExistEmail)
+        );
+    }
+
     /**
-     * @inheritDoc
+     *
+     * Xoa internship bang id
+     *
+     * @param $id
+     * @return array
      */
     public function deleteInternshipById($id)
     {
@@ -159,10 +186,15 @@ class InternshipRepository implements InternshipRepositoryInterface
         return $result;
     }
 
+
     /**
-     * @inheritDoc
+     *
+     * Check trung email
+     *
+     * @param $email
+     * @return false|Phrase
      */
-    public function validateExistEmail($email)
+    public function validateExistEmail($email, $id=null)
     {
         if (!$email) {
             return __("email should be specified");
@@ -170,8 +202,15 @@ class InternshipRepository implements InternshipRepositoryInterface
         $searchCriteria = $this->criteriaBuilder->addFilter("email", $email)
             ->create();
         $internshipCollection = $this->getList($searchCriteria);
+
         if ($internshipCollection->getTotalCount()) {
-            return __('Already exist a Internship. Please choose a different email.');
+            $existInternship = array_values($internshipCollection->getItems())[0];
+            if($existInternship && $id && $existInternship->getId() == $id) {
+                return false;
+            }
+            else {
+                return __('Already exist a Internship. Please choose a different email.');
+            }
         }
         return false;
     }

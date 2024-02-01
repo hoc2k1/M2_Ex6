@@ -9,10 +9,25 @@ use Bss\W6\Model\InternshipFactory;
 
 class Internship extends Action
 {
+    /**
+     * @var Registry
+     */
     protected $_coreRegistry;
+    /**
+     * @var PageFactory
+     */
     protected $_resultPageFactory;
+    /**
+     * @var InternshipFactory
+     */
     protected $_internshipFactory;
 
+    /**
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param PageFactory $resultPageFactory
+     * @param InternshipFactory $internshipFactory
+     */
     public function __construct(
         Context $context,
         Registry $coreRegistry,
@@ -25,11 +40,18 @@ class Internship extends Action
         $this->_internshipFactory = $internshipFactory;
 
     }
+
+    /**
+     * @return void
+     */
     public function execute()
     {
 
     }
 
+    /**
+     * @return true
+     */
     protected function _isAllowed()
     {
         return true;

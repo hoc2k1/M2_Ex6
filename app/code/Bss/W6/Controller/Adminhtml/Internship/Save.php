@@ -1,6 +1,8 @@
 <?php
 namespace Bss\W6\Controller\Adminhtml\Internship;
 
+use Bss\W6\Model\InternshipRepository;
+
 class Save extends \Magento\Backend\App\Action
 {
     /**
@@ -14,21 +16,34 @@ class Save extends \Magento\Backend\App\Action
     protected $eventManager;
 
     /**
+     * @var InternshipRepository
+     */
+    protected $internshipRepository;
+
+
+
+    /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Bss\W6\Model\InternshipFactory $internshipFactory
      * @param \Magento\Framework\Event\ManagerInterface $eventManager
+     * @param InternshipRepository $internshipRepository
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Bss\W6\Model\InternshipFactory $internshipFactory,
-        \Magento\Framework\Event\ManagerInterface $eventManager
+        \Magento\Framework\Event\ManagerInterface $eventManager,
+        InternshipRepository $internshipRepository
     ) {
         parent::__construct($context);
         $this->internshipFactory = $internshipFactory;
         $this->eventManager = $eventManager;
+        $this->internshipRepository = $internshipRepository;
     }
 
     /**
+     *
+     * Save Internship
+     *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
@@ -41,14 +56,19 @@ class Save extends \Magento\Backend\App\Action
         }
         try {
             $rowData = $this->internshipFactory->create();
-            $rowData->setData($data);
-            if (isset($data['id'])) {
+            if (isset($data['id']) && $data['id']) {
                 $rowData->setEntityId($data['id']);
+                $rowData->setData($data);
+                $this->internshipRepository->edit($rowData);
+            } else {
+                unset($data["id"]);
+                $rowData->setData($data);
+                $this->internshipRepository->save($rowData);
             }
 
-            // Dispatch a custom event after saving the Internship record
-//            $this->eventManager->dispatch('internship_save', ['internship' => $rowData]);
-            $rowData->afterSave();
+
+//            $this->internshipRepository->save($rowData);
+//            $rowData->save();
             $this->messageManager->addSuccessMessage(__('Your data has been saved!'));
         } catch (\Exception $e) {
             $this->messageManager->addErrorMessage(__("There was an error while saving Internship data, please try again!"));

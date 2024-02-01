@@ -2,6 +2,9 @@
 
 namespace Bss\W6\Observer;
 
+use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Customer\Model\CustomerFactory;
+use Magento\Customer\Model\ResourceModel\Customer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Event\Observer;
 use Bss\W6\Model\InternshipFactory;
@@ -13,12 +16,24 @@ class InternshipSaveObserver implements ObserverInterface
      */
     protected $internshipFactory;
 
+    /**
+     * @var CustomerRepositoryInterface
+     */
     protected $customerRepository;
+    /**
+     * @var CustomerFactory
+     */
     protected $customerFactory;
+    /**
+     * @var Customer
+     */
     protected $customerResource;
 
     /**
-     * @param \Bss\W6\Model\InternshipFactory $internshipFactory
+     * @param CustomerRepositoryInterface $customerRepository
+     * @param CustomerFactory $customerFactory
+     * @param Customer $customerResource
+     * @param InternshipFactory $internshipFactory
      */
     public function __construct(
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,

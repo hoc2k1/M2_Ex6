@@ -3,6 +3,7 @@
 namespace Bss\W6\Plugin\Adminhtml\Customer;
 
 use Bss\W6\Model\InternshipFactory;
+use Magento\Framework\App\Action\Context;
 use Magento\Framework\Message\ManagerInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 
@@ -23,10 +24,12 @@ class Edit
      */
     protected $customerRepository;
 
+
     /**
-     * @param \Bss\W6\Model\InternshipFactory $internshipFactory
-     * @param \Magento\Framework\Message\ManagerInterface $messageManager
+     * @param InternshipFactory $internshipFactory
+     * @param ManagerInterface $messageManager
      * @param CustomerRepositoryInterface $customerRepository
+     * @param Context $context
      */
     public function __construct(
         InternshipFactory $internshipFactory,

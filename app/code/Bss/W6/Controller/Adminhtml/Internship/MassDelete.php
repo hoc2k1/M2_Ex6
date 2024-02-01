@@ -3,7 +3,7 @@ namespace Bss\W6\Controller\Adminhtml\Internship;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Ui\Component\MassAction\Filter;
-use Bss\W6\Model\InternshipFactory;
+use Bss\W6\Model\ResourceModel\Internship\CollectionFactory;
 use Magento\Framework\Controller\ResultFactory;
 
 class MassDelete extends \Magento\Backend\App\Action
@@ -25,7 +25,7 @@ class MassDelete extends \Magento\Backend\App\Action
      */
     public function __construct(
         Context $context,
-        InternshipFactory $collectionFactory,
+        CollectionFactory $collectionFactory,
         Filter $filter
     ) {
         parent::__construct($context);
@@ -39,15 +39,16 @@ class MassDelete extends \Magento\Backend\App\Action
     public function execute()
     {
         $collection = $this->filter->getCollection($this->collectionFactory->create());
-        $deletedItems = 0;
+        $count = 0;
 
         foreach ($collection->getItems() as $item) {
-            $item->delete();
-            $deletedItems++;
+            $deleteItem = $this->_objectManager->get('Bss\W6\Model\Internship')->load($item->getId());
+            $deleteItem->delete();
+            $count++;
         }
 
         $this->messageManager->addSuccessMessage(
-            __('A total of %1 record(s) have been deleted.', $deletedItems)
+            __('A total of %1 record(s) have been deleted.', $count)
         );
 
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
