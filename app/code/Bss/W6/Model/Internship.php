@@ -14,14 +14,14 @@ class Internship extends \Magento\Framework\Model\AbstractModel implements Inter
     /**
      * @var string
      */
-    protected $_cacheTag = 'internship';
+    protected $cacheTag = 'internship';
 
     /**
      * Prefix of model events names.
      *
      * @var string
      */
-    protected $_eventPrefix = 'internship';
+    protected $eventPrefix = 'internship';
 
     /**
      * Initialize resource model.

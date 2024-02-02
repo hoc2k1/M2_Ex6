@@ -36,8 +36,7 @@ class Edit
         ManagerInterface            $messageManager,
         CustomerRepositoryInterface $customerRepository,
         InternshipRepository        $internshipRepository
-    )
-    {
+    ) {
         $this->messageManager = $messageManager;
         $this->customerRepository = $customerRepository;
         $this->internshipRepository = $internshipRepository;

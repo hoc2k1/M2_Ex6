@@ -7,8 +7,9 @@ use Magento\Ui\Component\MassAction\Filter;
 use Bss\W6\Model\ResourceModel\Internship\CollectionFactory;
 use Magento\Framework\Controller\ResultFactory;
 use Bss\W6\Model\InternshipRepository;
+use \Magento\Backend\App\Action;
 
-class MassDelete extends \Magento\Backend\App\Action
+class MassDelete extends Action
 {
     /**
      * @var CollectionFactory
@@ -36,8 +37,7 @@ class MassDelete extends \Magento\Backend\App\Action
         CollectionFactory    $collectionFactory,
         Filter               $filter,
         InternshipRepository $internshipRepository
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->collectionFactory = $collectionFactory;
         $this->filter = $filter;

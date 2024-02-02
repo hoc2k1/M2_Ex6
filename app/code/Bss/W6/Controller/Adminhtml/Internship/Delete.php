@@ -34,8 +34,7 @@ class Delete extends Action
         Context              $context,
         Redirect             $redirect,
         InternshipRepository $internshipRepository
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->redirect = $redirect;
         $this->internshipRepository = $internshipRepository;
@@ -65,7 +64,7 @@ class Delete extends Action
      *
      * @return bool
      */
-    protected function _isAllowed()
+    protected function isAllowed()
     {
         return $this->_authorization->isAllowed('Bss_W6::internship');
     }

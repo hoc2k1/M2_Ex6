@@ -30,8 +30,7 @@ class GenericButton
      */
     public function __construct(
         Context $context
-    )
-    {
+    ) {
         $this->urlBuilder = $context->getUrlBuilder();
         $this->getRequest = $context->getRequest();
     }

@@ -21,7 +21,8 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
         if ($this->getId()) {
             return [
                 'label' => __('Delete Internship'),
-                'on_click' => 'deleteConfirm(\'' . __('Are you sure you want to delete this Internship?') . '\', \'' . $this->getDeleteUrl() . '\')',
+                'on_click' => 'deleteConfirm(\'' . __('Are you sure you want to delete this Internship?')
+                    . '\', \'' . $this->getDeleteUrl() . '\')',
                 'class' => 'delete',
                 'sort_order' => 20
             ];

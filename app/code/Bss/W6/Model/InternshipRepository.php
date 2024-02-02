@@ -85,8 +85,7 @@ class InternshipRepository implements InternshipRepositoryInterface
         SearchResultsInterfaceFactory                            $searchResultsFactory,
         ResourceModel\Internship                                 $resource,
         InternshipFactory                                        $internshipFactory,
-    )
-    {
+    ) {
         $this->criteriaBuilder = $criteriaBuilder;
         $this->collectionProcessor = $collectionProcessor;
         $this->internshipCollection = $internshipCollection;
@@ -107,9 +106,8 @@ class InternshipRepository implements InternshipRepositoryInterface
         if (!isset($this->instances[$id])) {
             $mInternship = $this->internshipFactory->create();
             $this->resource->load($mInternship, $id);
-
             if (!$mInternship->getId()) {
-                throw new NoSuchEntityException(__('Internship with id "%1" does not exist.', $id));
+                return null;
             }
             $this->instances[$id] = $mInternship;
         }
@@ -188,7 +186,6 @@ class InternshipRepository implements InternshipRepositoryInterface
                 "success" => true,
                 "message" => __("You deleted.")
             ];
-
         } catch (\Exception $exception) {
             $result["status"] = [
                 "success" => false,
@@ -198,13 +195,11 @@ class InternshipRepository implements InternshipRepositoryInterface
         return $result;
     }
 
-
     /**
-     *
      * Check exist email
      *
      * @param $email
-     * @return bool
+     * @return bool|string
      */
     public function validateExistEmail($email, $id = null)
     {
@@ -261,5 +256,4 @@ class InternshipRepository implements InternshipRepositoryInterface
         }
         return $this->instances;
     }
-
 }

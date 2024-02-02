@@ -48,8 +48,7 @@ class InternshipSaveObserver implements ObserverInterface
         \Magento\Customer\Model\ResourceModel\Customer    $customerResource,
         InternshipRepository                              $internshipRepository,
         Internship                                        $resource
-    )
-    {
+    ) {
         $this->customerRepository = $customerRepository;
         $this->customerFactory = $customerFactory;
         $this->customerResource = $customerResource;
@@ -77,4 +76,3 @@ class InternshipSaveObserver implements ObserverInterface
         }
     }
 }
-

@@ -9,7 +9,7 @@ class InternshipDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvid
     /**
      * @var array
      */
-    protected $_loadedData;
+    protected $loadedData;
 
     /**
      * @var \Bss\W6\Model\ResourceModel\Internship\Collection
@@ -29,8 +29,7 @@ class InternshipDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvid
         CollectionFactory $collectionFactory,
         array $meta = [],
         array $data = []
-    )
-    {
+    ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
         $this->collection = $collectionFactory->create();
     }
@@ -42,14 +41,13 @@ class InternshipDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvid
      */
     public function getData()
     {
-        if (isset($this->_loadedData)) {
-            return $this->_loadedData;
+        if (isset($this->loadedData)) {
+            return $this->loadedData;
         }
         $items = $this->collection->getItems();
         foreach ($items as $internship) {
-            $this->_loadedData[$internship->getId()] = $internship->getData();
+            $this->loadedData[$internship->getId()] = $internship->getData();
         }
-//        dd($this->_loadedData);
-        return $this->_loadedData;
+        return $this->loadedData;
     }
 }

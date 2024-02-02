@@ -21,6 +21,7 @@ class OrderRepositoryInterfacePlugin
      * @param OrderRepositoryInterface $subject
      * @param OrderInterface $order
      * @return OrderInterface
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterGet(OrderRepositoryInterface $subject, OrderInterface $order)
     {

@@ -33,8 +33,7 @@ class Save extends \Magento\Backend\App\Action
         \Bss\W6\Model\InternshipFactory           $internshipFactory,
         \Magento\Framework\Event\ManagerInterface $eventManager,
         InternshipRepository                      $internshipRepository
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->internshipFactory = $internshipFactory;
         $this->eventManager = $eventManager;
@@ -69,7 +68,8 @@ class Save extends \Magento\Backend\App\Action
 
             $this->messageManager->addSuccessMessage(__('Your data has been saved!'));
         } catch (\Exception $e) {
-            $this->messageManager->addErrorMessage(__("There was an error while saving Internship data, please try again!"));
+            $errorMessage = "There was an error while saving Internship data, please try again!";
+            $this->messageManager->addErrorMessage(__($errorMessage));
         }
         $this->_redirect('week6/internship/index');
     }
@@ -77,7 +77,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @return bool
      */
-    protected function _isAllowed()
+    protected function isAllowed()
     {
         return $this->_authorization->isAllowed('Bss_W6::save');
     }

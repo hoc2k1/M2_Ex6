@@ -12,14 +12,14 @@ class Action extends Column
     /**
      * @var UrlInterface
      */
-    protected $_urlBuilder;
+    protected $urlBuilder;
 
     const PATH_EDIT = 'week6/internship/edit';
 
     /**
      * @var string
      */
-    protected $_viewUrl;
+    protected $viewUrl;
 
     /**
      * Constructor
@@ -35,13 +35,12 @@ class Action extends Column
         ContextInterface   $context,
         UiComponentFactory $uiComponentFactory,
         UrlInterface       $urlBuilder,
-                           $viewUrl = '',
+        $viewUrl = '',
         array              $components = [],
         array              $data = []
-    )
-    {
-        $this->_urlBuilder = $urlBuilder;
-        $this->_viewUrl = $viewUrl;
+    ) {
+        $this->urlBuilder = $urlBuilder;
+        $this->viewUrl = $viewUrl;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -58,7 +57,7 @@ class Action extends Column
                 $name = $this->getData('name');
                 if (isset($item['id'])) {
                     $item[$name]['view'] = [
-                        'href' => $this->_urlBuilder->getUrl(static::PATH_EDIT, ['id' => $item['id']]),
+                        'href' => $this->urlBuilder->getUrl(static::PATH_EDIT, ['id' => $item['id']]),
                         'target' => '_blank',
                         'label' => __('Edit')
                     ];

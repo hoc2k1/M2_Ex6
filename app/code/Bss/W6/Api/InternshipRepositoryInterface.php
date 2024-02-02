@@ -54,5 +54,4 @@ interface InternshipRepositoryInterface
      * @return \Bss\W6\Api\Data\InternshipSearchResultsInterface|\Magento\Framework\Api\SearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $criteria);
-
 }

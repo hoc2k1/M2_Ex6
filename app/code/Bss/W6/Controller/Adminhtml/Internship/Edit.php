@@ -53,8 +53,7 @@ class Edit extends Action
         PageFactory          $resultPageFactory,
         Redirect             $redirect,
         InternshipRepository $internshipRepository
-    )
-    {
+    ) {
         parent::__construct($context);
         $this->session = $session;
         $this->redirect = $redirect;
@@ -70,12 +69,6 @@ class Edit extends Action
     public function execute()
     {
         $rowId = (int)$this->getRequest()->getParam('id');
-        $rowData = $this->internshipRepository->getById($rowId);
-        if (!$rowData->getId()) {
-            $this->messageManager->addErrorMessage(__('row data no longer exist.'));
-            $this->_redirect('week6/internship/rowdata');
-            return;
-        }
 
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $title = $rowId ? __('Edit Internship') : __('Add Internship');
@@ -88,7 +81,7 @@ class Edit extends Action
      *
      * @return bool
      */
-    protected function _isAllowed()
+    protected function isAllowed()
     {
         return $this->_authorization->isAllowed('Bss_W6::edit');
     }

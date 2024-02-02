@@ -7,11 +7,11 @@ class Internship extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * @var string
      */
-    protected $_idFieldName = 'id';
+    protected $idFieldName = 'id';
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTime
      */
-    protected $_date;
+    protected $date;
 
     /**
      * Construct.
@@ -23,11 +23,10 @@ class Internship extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context,
         \Magento\Framework\Stdlib\DateTime\DateTime       $date,
-                                                          $resourcePrefix = null
-    )
-    {
+        $resourcePrefix = null
+    ) {
         parent::__construct($context, $resourcePrefix);
-        $this->_date = $date;
+        $this->date = $date;
     }
 
     /**

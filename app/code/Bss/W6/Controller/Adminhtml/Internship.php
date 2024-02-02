@@ -4,43 +4,33 @@ namespace Bss\W6\Controller\Adminhtml;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Bss\W6\Model\InternshipFactory;
 
 class Internship extends Action
 {
     /**
-     * @var Registry
-     */
-    protected $_coreRegistry;
-    /**
      * @var PageFactory
      */
-    protected $_resultPageFactory;
+    protected $resultPageFactory;
     /**
      * @var InternshipFactory
      */
-    protected $_internshipFactory;
+    protected $internshipFactory;
 
     /**
      * @param Context $context
-     * @param Registry $coreRegistry
      * @param PageFactory $resultPageFactory
      * @param InternshipFactory $internshipFactory
      */
     public function __construct(
         Context           $context,
-        Registry          $coreRegistry,
         PageFactory       $resultPageFactory,
         InternshipFactory $internshipFactory
-    )
-    {
+    ) {
         parent::__construct($context);
-        $this->_coreRegistry = $coreRegistry;
-        $this->_resultPageFactory = $resultPageFactory;
-        $this->_internshipFactory = $internshipFactory;
-
+        $this->resultPageFactory = $resultPageFactory;
+        $this->internshipFactory = $internshipFactory;
     }
 
     /**
@@ -48,13 +38,12 @@ class Internship extends Action
      */
     public function execute()
     {
-
     }
 
     /**
      * @return true
      */
-    protected function _isAllowed()
+    protected function isAllowed()
     {
         return true;
     }
